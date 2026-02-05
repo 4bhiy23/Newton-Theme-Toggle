@@ -11,20 +11,30 @@ function applyTheme(theme) {
   }
 }
 
-// Wait until body exists
+function loadTheme() {
+  chrome.storage.local.get(["newtonTheme"], (res) => {
+    applyTheme(res.newtonTheme || "light");
+  });
+}
+
+// 1️⃣ Apply once DOM is ready
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", loadTheme);
+} else {
+  loadTheme();
+}
+
+// 2️⃣ Re-apply if site messes with DOM
 const observer = new MutationObserver(() => {
-  if (document.body) {
-    chrome.storage.local.get(["newtonTheme"], (res) => {
-      applyTheme(res.newtonTheme || "light");
-    });
-    observer.disconnect();
-  }
+  loadTheme();
 });
 
-observer.observe(document.documentElement, { childList: true });
+observer.observe(document.documentElement, {
+  childList: true,
+  subtree: true,
+});
 
-
-// Applies changes to the page
+// 3️⃣ React to popup toggle
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area === "local" && changes.newtonTheme) {
     applyTheme(changes.newtonTheme.newValue);
