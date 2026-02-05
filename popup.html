@@ -3,22 +3,62 @@
   <head>
     <style>
       body {
-        width: 80px;
-        height: 60px;
+        width: 220px;
+        padding: 14px;
         margin: 0;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
+        gap: 12px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #0f172a; /* dark slate */
+        color: #e5e7eb;
       }
+
       button {
-        padding: 6px 12px;
+        width: 100%;
+        padding: 10px 0;
+        font-size: 15px;
+        font-weight: 600;
+        border-radius: 10px;
+        border: none;
         cursor: pointer;
-        font-size: 14px;
+        background: linear-gradient(135deg, #6366f1, #22d3ee);
+        color: white;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35);
+      }
+
+      button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 25px rgba(99, 102, 241, 0.45);
+      }
+
+      button:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+      }
+
+      .footer {
+        font-size: 11px;
+        color: #94a3b8;
+        text-align: center;
+        line-height: 1.4;
+      }
+
+      .heart {
+        color: #ef4444;
       }
     </style>
   </head>
   <body>
-    <button id="toggle">Toggle</button>
+    <button id="toggle">Toggle Theme</button>
+
+    <div class="footer">
+      Built with <span class="heart">&#10084;&#65039;</span><br />
+      by <strong>DevClub</strong> (NSTxRU)
+    </div>
+
     <script src="popup.js"></script>
   </body>
 </html>
