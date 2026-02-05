@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Newton Theme Toggle",
+  "version": "1.0",
+  "description": "Toggle and persist theme using popup button",
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": ["https://my.newtonschool.co/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
